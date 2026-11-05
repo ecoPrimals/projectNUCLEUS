@@ -1,11 +1,15 @@
 # Phase Architecture — projectNUCLEUS
 
-> **Wave 142b note**: **SILICON ATHEISM PHASE 2.** Phase 1 complete: 14/14 primals compile for all 4 depot architectures. Phase 2 active: abstraction over gating (petalTongue `petal-tongue-platform` reference). primalSpring v0.9.39 (`8df6b3f`, 167 scenarios). Root workspace `Cargo.toml` (edition 2024). **265 Rust tests** (darkforest 149, tunnelKeeper 48+1 ignored, nucleus-deploy 49, nucleus-primals 19). `cargo deny check` PASS 4/4. 55 depot binaries, re-harvest → 56.
-> **Wave 69 note**: `nucleus-primals` shared registry crate — single source of truth for slug/env/port mappings used by `nucleus-deploy`.
-> **Wave 67 note**: All bash deploy scripts referenced below have been evolved
-> to Rust via `nucleus-deploy` (9 subcommands). Bash originals remain in place
-> with DEPRECATED headers as fossil record. Use `nucleus-deploy security`,
-> `nucleus-deploy deploy`, `nucleus-deploy telemetry`, etc.
+> **Wave 200+ note (2026-11-04)**: **SOVEREIGNTY COMPLETE.** 17/17 primals compiled and
+> running. dromedary serves 7 subdomains direct (no Cloudflare, no Caddy, no VPS). Tor hidden
+> service on eastGate. golgi VPS DOWN. WireGuard DISABLED. 21 sweetGrass braids. Nostr + RSS +
+> neutrino + ActivityPub messaging. REEDit unified surface. nucleus-primals registry evolved
+> 13→17 primals. Ferment Atomic added (sourDough + swarmVine + bingoCube). Phase 3 achieved.
+> **285+ Rust tests** (darkforest 149, tunnelKeeper 48+1, nucleus-deploy 49, nucleus-primals 20+, pending full count).
+>
+> **Wave 142b note**: SILICON ATHEISM PHASE 2. Phase 1 complete: 14/14 primals compile for all 4 depot architectures.
+> **Wave 69 note**: `nucleus-primals` shared registry crate — single source of truth.
+> **Wave 67 note**: All bash deploy scripts evolved to Rust via `nucleus-deploy` (9 subcommands).
 
 Each phase builds on the previous. No phase is thrown away — Phase 1 covalent
 bonding remains the foundation even when Phase 4 metallic federation is live.

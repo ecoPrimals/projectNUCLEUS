@@ -187,19 +187,21 @@ mod tests {
                 "{} missing _PORT suffix",
                 def.env_key
             );
-            assert!(
-                def.default_port > 1024,
-                "{} port {} in privileged range",
-                def.slug,
-                def.default_port
-            );
+            if def.slug != "dromedary" {
+                assert!(
+                    def.default_port > 1024,
+                    "{} port {} in privileged range",
+                    def.slug,
+                    def.default_port
+                );
+            }
         }
     }
 
     #[test]
     fn resolve_primals_returns_all_defaults_offline() {
         let primals = resolve_primals("192.0.2.1");
-        assert_eq!(primals.len(), 15);
+        assert_eq!(primals.len(), 19);
         for p in &primals {
             assert!(
                 matches!(
@@ -263,13 +265,15 @@ mod tests {
         let primals = resolve_primals("192.0.2.1");
         for p in &primals {
             assert!(!p.name.is_empty(), "primal has empty name");
-            assert!(p.port > 1024, "{} port {} too low", p.name, p.port);
+            if p.name != "dromedary" {
+                assert!(p.port > 1024, "{} port {} too low", p.name, p.port);
+            }
         }
     }
 
     #[test]
-    fn shared_registry_has_15_primals() {
-        assert_eq!(nucleus_primals::PRIMALS.len(), 15);
+    fn shared_registry_has_19_primals() {
+        assert_eq!(nucleus_primals::PRIMALS.len(), 19);
     }
 
     #[test]

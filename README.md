@@ -25,15 +25,17 @@ projectNUCLEUS (deploys + validates on gate hardware)
 cellMembrane (fleet ops, cascade, membrane)
 ```
 
-**Refined scope (Wave 157a)**: projectNUCLEUS focuses on three concerns:
+**Wave 200+ (2026-11-04)**: SOVEREIGNTY COMPLETE. Tunnel sovereignty achieved —
+dromedary (Pure Rust reverse proxy) replaces Cloudflare + Caddy entirely. Tor hidden
+service on eastGate. golgi VPS DOWN. WireGuard DISABLED. LAN is just LAN.
+17 primals compiled and running. 7 live subdomains. 1,200+ pages served sovereign.
+21 sweetGrass braids. Nostr + neutrino + RSS + ActivityPub messaging. Zero cloud.
+
+projectNUCLEUS focuses on three concerns:
 
 1. **Gate deployment** — `nucleus-deploy` CLI (deploy, provision, verify, DNS)
 2. **Security validation** — `darkforest` adversarial auditor, membrane pen tests
-3. **Tunnel sovereignty** — `tunnelKeeper` (Cloudflare → Songbird transition)
-
-Historical residue from the atomics evolution phase (workload dispatch specs,
-architectural models, observer pipelines, legacy bash scripts) has been marked
-for handoff to upstream owners. See **Handoff Status** below.
+3. **Sovereign infrastructure** — dromedary, Tor, direct DNS (Porkbun), Nostr identity
 
 ## NUCLEUS Atomics
 
@@ -41,15 +43,19 @@ NUCLEUS composes from three atomics, each named for a subatomic particle:
 
 | Atomic | Particle | Primals | Role |
 |--------|----------|---------|------|
-| **Tower** | Electron | BearDog + Songbird + skunkBat | Trust boundary — crypto, identity, networking, defense |
-| **Node** | Proton | Tower + ToadStool + barraCuda + coralReef | Compute — workload dispatch, GPU math, shader compilation |
-| **Nest** | Neutron | Tower + NestGate + rhizoCrypt + loamSpine + sweetGrass | Storage — content-addressed data, provenance, attribution |
+| **Tower** | Electron | bearDog + songBird + skunkBat + dromedary | Trust boundary — crypto, identity, networking, defense, sovereign TLS |
+| **Node** | Proton | Tower + toadStool + barraCuda + coralReef | Compute — workload dispatch, GPU math, shader compilation |
+| **Nest** | Neutron | Tower + nestGate + rhizoCrypt + loamSpine + sweetGrass | Storage — content-addressed data, provenance, attribution, messaging |
+| **Ferment** | Gluon | sourDough + swarmVine + bingoCube | Coordination — fermentation, gossip, scheduling |
 
-Full NUCLEUS = Tower + Node + Nest + Squirrel (AI) + biomeOS (orchestration) + petalTongue (viz).
+Full NUCLEUS = Tower + Node + Nest + Ferment + Squirrel (AI) + biomeOS (orchestration) + petalTongue (viz).
+
+**17 primals total.** All compiled. All running. All Pure Rust. All `#![forbid(unsafe_code)]`.
 
 | Composition | Particle | Primals | Role |
 |-------------|----------|---------|------|
 | **Agent** | Photon | Tower + biomeOS + Squirrel | Autonomous agent — AI planning via `signal_plan`, graph execution via `signal.dispatch` |
+| **Membrane** | Neutrino | Full NUCLEUS + 23 mushrooms + 35 crons | The living organism — Gaia. Self-maintaining, self-publishing, sovereign. |
 
 The Agent composition is the smallest unit that can reason + act + audit autonomously.
 Squirrel decomposes intent into atomic signals, biomeOS dispatches them through tower
@@ -75,125 +81,130 @@ Gates connect to each other through chemical bonding patterns:
 
 ## Current State
 
-**Wave 157a (2026-08-08)** — **ROLE REFINEMENT.** Scope narrowed to deployment + validation + tunnel sovereignty. Historical atomics-era residue (workload TOMLs, architectural models, pappusCast observer, legacy bash) marked for handoff. 5 normative specs pending wateringHole migration. Pure Rust deep debt sweep COMPLETE (all subprocess calls → native Rust, registry-driven telemetry/verification). Root workspace `Cargo.toml` unifies 4 crates (edition 2024). `unsafe_code = "forbid"` workspace-wide. **265 Rust tests** (1 ignored). 3/6 NUCLEUS gates redeployed (sporeGate, blueGate, southGate — 13/13 ALIVE). ironGate pending.
+**Wave 200+ (2026-11-04)** — **SOVEREIGNTY COMPLETE.** All external dependencies eliminated. dromedary serves 7 subdomains direct (no Cloudflare, no Caddy, no VPS). Tor hidden service on eastGate. 17/17 primals compiled and running. 21 sweetGrass braids. Nostr broadcasting. RSS self-publishing. REEDit unified surface. The organism speaks for itself.
 
 ### Infrastructure
 
-- All **13/13 NUCLEUS primals** deployed and healthy — **zero debt** (L1 clean, MethodGate enforced)
-- **8/8 springs** at Tier 4 IPC-first — 8,486+ tests, LTEE reproductions active
-- **Zero open upstream gaps** — NestGate Session 60, all per-primal debt closed
-- BTSP Phase 3 AEAD, Wire Standard L3, 5-tier discovery hierarchy — all converged
-- Full provenance chain: BLAKE3 → rhizoCrypt DAG → loamSpine ledger → sweetGrass braid
-- **Physical topology**: INTERNET → ATT BGW320 (passthrough) → Flint H1 (edge router, plasma membrane) → CRS310 (L2 backbone, 10G/2.5G) → gates. WireGuard overlay (10.13.37.0/24) via golgi VPS. sporeGate is hot-pluggable compute — unplugging it does NOT kill the network
-- **NestGate content pipeline SHIPPED** (Session 60): 8 `content.*` methods on 4 transports. H2-05 **DONE**, H2-06–09 **UNBLOCKED**
-- **Static observer surface**: pre-rendered HTML via pappusCast, centralized dark theme, Rust-validated (darkforest `--suite observer`)
-- **`composition.deploy(graph)` WIRED**: `nucleus-deploy deploy --graph-deploy` reads graph TOML, starts primals in dependency order. **`--uds-only`**: suppresses TCP ports for VPS standard (zero-port mode)
-- **Agent composition WIRED**: `tower_agent.toml` graph + `signal_executor.sh` bridge — Squirrel `signal_plan` → biomeOS `signal.dispatch` agent loop. 5 compositions: tower, agent, node, nest, full
-- **cellMembrane LIVE — Nest Atomic composition**: fieldMouse deployment on 157.230.3.183 (DigitalOcean nyc1, **$12/mo 2GB RAM**). **11 services, 7 primals**: Tower (BearDog :9100, SkunkBat :9140, Songbird :3478) + Nest (NestGate :9500, rhizoCrypt :9602, loamSpine :9700, sweetGrass :9850) + RustDesk :21115-17 + Caddy TLS :80/:443 + petalTongue :8080 + BearDog TLS shadow :8443. **Channel 3 TLS LIVE**: `membrane.primals.eco` ACME cert. 1.6GB RAM free. Hardened (fail2ban, UFW, tmpfiles.d). DO token encrypted (BearDog AES-256-GCM). Private ops repo: `gardens/cellMembrane`
-- **BTSP dual-auth shadow ACTIVE**: BTSPAuthenticator plugin live on JupyterHub — PAM + ionic token dual-accept
-- **Provenance pipeline validated**: Full 9-phase pipeline through trio (rhizoCrypt DAG + loamSpine spine + sweetGrass braid). Merkle root + ed25519 witness braid operational
-- **DNS + DNSSEC LIVE**: Cloudflare NS (alfie/serena.ns.cloudflare.com) with DNSSEC enabled (DS at Porkbun, keyTag 2371, alg 13). Site LIVE + HARDENED at primals.eco
-- **Continuous membrane telemetry**: `nucleus-deploy telemetry` probes both membranes (VPS + gate). `nucleus-deploy summary` produces rolling 7-day `validation/baselines/membrane_7day.toml`
-- **darkforest --scope outer**: **26/26 PASS** — clean sweep against live primals.eco (OTR/OHT/ODP/OFG/ODN/OMS). DNSSEC live. Formal report: `specs/DARKFOREST_OUTER_MEMBRANE_REPORT.md`
-- **darkforest --suite membrane**: 21 PASS, 0 FAIL against live cellMembrane VPS (MEM-01 through MEM-17). Password auth disabled, fail2ban active, credentials 600/root, no unexpected listeners
-- **Dark Forest Glacial Gate PASS**: `validation/dark_forest_gate_local.sh` — 33 structural checks across 5 pillars. All deploy graphs carry `secure_by_default = true`
-- **Deep debt evolution COMPLETE**: deploy.sh modularized (now `nucleus-deploy deploy`, archived in `deploy/legacy/`), darkforest pentest/crypto split into submodules, tunnelKeeper clone optimization, all workload TOMLs gate-agnostic (`$SPRINGS_ROOT`), deploy scripts use `$ECOPRIMALS_ROOT`
-- **lithoSpore 7/7 modules PASS Tier 2** (75/75 checks, 117 tests): Rust validation for fitness, mutations, alleles, citrate, biobricks, breseq, anderson. Cross-tier parity 7/7 MATCH (Python ↔ Rust). Tier 3 wired (trio JSON-RPC, graceful degradation)
-- **Provenance trio graph capabilities reconciled**: GAP-36 canonical names (`dag.*`, `spine.*`, `braid.*`) aligned across `nucleus_complete.toml`, `rootpulse_commit.toml`, and `provenance_pipeline.sh` (now `nucleus-deploy provenance`, archived in `deploy/legacy/`)
-- **BTSP dual-auth plugin BUILT** (H2-01): `deploy/jupyterhub_btsp_auth.py` — BTSPAuthenticator with PAM fallback, auth logging, pre_spawn_hook. `deploy/deploy_btsp_auth_shadow.sh` for shadow run management
-- **`biomeos.spring_status` IMPLEMENTED** (v4.56): Binary discovery + workload counts. Registry at **502+ methods** (Wave 136a). NC-1 **CODE COMPLETE** — `biomeos-pseudospore` + emit materialization shipped. Live column U gated on VPS deploy
-- **API methods RESOLVED**: `nestgate.artifact_query`, `rhizocrypt.dag_summary` covered by existing shipped methods
-- **Wave 56 deployment standard**: `deploy.sh --uds-only` (now `nucleus-deploy deploy --uds-only`, archived in `deploy/legacy/`) suppresses TCP ports across all 13 primals (VPS standard). `deploy_graph.sh` + `deploy_primal_start.sh` + `deploy_health_check.sh` all UDS-aware. Socket-based health checks in UDS-only mode. `primalspring checksums` + `primalspring registry` replace shell validation scripts
-- **Wave 64 Rust evolution**: All deploy scripts evolved to idiomatic Rust — `nucleus-deploy` binary with 9 subcommands: `security`, `provenance`, `deploy`, `spore`, `telemetry`, `summary`, `verify`, `provision`, `dns`. `clap` CLI, `tokio` async, zero `unwrap()` in production, `unsafe_code = "forbid"` in all Cargo.toml. Security module split into `security/` directory (6 submodules). Bash originals deprecated in place. Cloudflare artifacts fossilized to `deploy/legacy/`. **265 Rust tests PASS** (darkforest 149, tunnelKeeper 48+1 ignored, nucleus-deploy 49, nucleus-primals 19)
-- **Wave 58 deep debt**: Blocking I/O evolved to `tokio::task::spawn_blocking` (health.rs). Discovery transport evolved from HTTP POST to newline-delimited JSON-RPC (matching primal wire format). Silent JSON serialization bugs fixed (`unwrap_or_default` → error propagation). `chrono` dependency removed (pure `std::time`). Deploy script hardcoded ports wired to `nucleus_config.sh` variables. Transport module ungated (+9 tests), pentest coverage expanded (+12 tests), health.rs async load fix. 14 deploy scripts evolved from hardcoded IPs/hostnames to `nucleus_config.sh` variables
-- **Wave 55 deep debt**: `yaml_serde` (libyaml C) → `serde-saphyr` (pure Rust, panic-free). `net.rs` refactored with shared HTTP helpers. Zero clippy pedantic+nursery warnings. `deny.toml` bans `unsafe-libyaml`. darkforest zero C deps
-- **Upstream zero gate debt**: primalSpring v0.9.39 — 167 scenarios. All 14 primals pulled to latest. Deploy graphs 19/19 `secure_by_default`. `deny.toml` enforced. `--uds-only` VPS standard shipped
-- **Wave 38 sovereignty shadow FULL PASS**: `graphs/sovereignty_shadow.toml` — 5-track parity proof + DNS. Orchestrator: **6 PASS, 0 FAIL, 0 SKIP**. S1 TLS **LIVE** (13ms vs 163ms CF), S2 NAT **LIVE** (100% reachable), S3 content **LIVE** (TTFB 68ms vs 111ms GH), S4 auth **SHADOW LIVE** (cutover pending), S5 DNS **DEPLOYED** (NS cutover pending) (knot-dns DNSSEC). **Nest Atomic** deployed: NestGate v2.1.0, rhizoCrypt v0.14.0, loamSpine v0.9.16, sweetGrass v0.7.34 — provenance trio 10/10 PASS. 11 services, 7 primals on VPS
+- All **17/17 primals** compiled and deployed — 14 via NUCLEUS systemd, dromedary + biomeOS separate services
+- Full provenance chain: BLAKE3 → rhizoCrypt DAG → loamSpine ledger → sweetGrass braid (21 braids)
+- **Physical topology (Two Houses)**:
+  - INTERNET → ATT modem (.254) → GL-MT6000 Router (.1) → MikroTik (.2) → gates
+  - Subnet: 192.168.4.0/24, DHCP .100-.249
+  - House 2: TP-Link JetStream (.111) — 10G fiber backbone to House 1
+  - WireGuard: **DISABLED** — LAN is just LAN. No mesh overlay.
+- **7 live subdomains**: primals.eco (HUD, 167 pages), sporeprint (382), detroit (600+), hypothesis (52), tuebor (35), hud, signal
+- **Tor hidden service**: LIVE on eastGate (replaces sporeGate federation role)
+- **Port forwards**: HTTP/HTTPS/SMTP/DNS → eastGate (.194)
+- **DNS**: Porkbun direct — MX, SPF, DMARC configured for primals.eco
+- **AI**: 15 ollama models + 3 custom (gaia, gaia-code, gaia-fast) on RTX 4070
+- **Autonomous layer COMPLETE**: 23 mushrooms, 35 crons — self-maintaining, self-publishing
+- **golgi VPS**: DOWN — cellMembrane Nest Atomic is **DEPRECATED**. eastGate runs everything.
+- **Cloudflare**: FULLY DEPRECATED — dromedary serves TLS direct with ACME
+- **Messaging**: Nostr (gaia@primals.eco + ecoPrimal@primals.eco), RSS (1560 items), neutrino (squirrel), ActivityPub (webfinger), WebSub
+### Wave 38–157 History (fossil record)
+
+<details>
+<summary>Click to expand pre-sovereignty evolution history</summary>
+
+- BTSP dual-auth shadow ACTIVE: BTSPAuthenticator plugin live on JupyterHub
+- Provenance pipeline validated: Full 9-phase pipeline through trio. Merkle root + ed25519 witness braid operational
+- darkforest --scope outer: 26/26 PASS — clean sweep against live primals.eco
+- Dark Forest Glacial Gate PASS: 33 structural checks across 5 pillars
+- Deep debt evolution COMPLETE: deploy.sh modularized, darkforest pentest/crypto split
+- lithoSpore 7/7 modules PASS Tier 2 (75/75 checks, 117 tests)
+- Wave 64 Rust evolution: 265 Rust tests PASS (darkforest 149, tunnelKeeper 48+1, nucleus-deploy 49, nucleus-primals 19)
+- Wave 56 deployment standard: `--uds-only` suppresses TCP ports (VPS standard)
+- Wave 38 sovereignty shadow FULL PASS: 5-track parity proof + DNS
+
+</details>
 
 ### Services (all persistent via systemd)
 
-| Service | URL | Port | Layer | Status |
-|---------|-----|------|-------|--------|
-| primals.eco | `primals.eco` | 443 | Outer membrane | Cloudflare proxy (trans) → Caddy TLS (cis) — HSTS, CSP, DNSSEC |
-| Depot | `membrane.primals.eco` | 443 | Outer membrane | Binary depot — read-only, BLAKE3 checksums |
-| Observer (static) | `lab.primals.eco` | 8866 | Membrane | Pre-rendered HTML, open/unauthenticated |
-| JupyterHub | `lab.primals.eco` (gated) | 8000 | Membrane | PAM auth, reviewer/user tiers |
-| Forgejo | `git.primals.eco` | 3000/2222 | Intracellular | **Primary git host** — 40 repos, 3 orgs. K-Derm diderm relay → GitHub |
-| pappusCast | — | — | Intracellular | Tiered auto-propagation daemon (workspace → observer) |
-| K-Derm Relay | — | outbound | Membrane | Diderm relay: gate → golgiBody-inner → peptidoglycan → golgiBody-ext → GitHub |
-| cellMembrane VPS | golgiBody | 80, 443 | Inner membrane | **Nest Atomic** (2GB): Tower + Nest (7 primals) + Caddy TLS. K-Derm: CF→Caddy→primals. Hardened (fail2ban, UFW, rate-limiting, DNSSEC) |
-| 13 NUCLEUS primals | localhost | 9100–9900 | Intracellular | All healthy, user services |
+| Service | URL/Port | Layer | Status |
+|---------|----------|-------|--------|
+| dromedary | `:80/:443` | Outer membrane | **Sovereign TLS** — ACME, HTTP/2, 7 subdomains, Meta blackwall |
+| Tor | `.onion` | Outer membrane | Hidden service — eastGate is the provider |
+| gaia-web | `:8080` | Membrane | Data server — HUD + membrane + API |
+| Forgejo | `:3000/:2222` | Intracellular | Primary git host — 40+ repos, 3 orgs |
+| ollama | `:11434` | Intracellular | AI inference — 15 models + 3 custom |
+| 14 NUCLEUS primals | `:9100–9900` | Intracellular | All healthy, user services via `membrane-nucleus@` |
+| dromedary | user service | Outer membrane | Separate systemd unit, enabled |
+| biomeOS | orchestrator | Intracellular | Composition coordination |
+
+### Deprecated Services (fossil record)
+
+| Service | Was | Status |
+|---------|-----|--------|
+| ~~cellMembrane VPS~~ | golgi 157.230.3.183 | **DOWN** — VPS unreachable |
+| ~~Cloudflare proxy~~ | CDN + TLS | **DEPRECATED** — dromedary serves direct |
+| ~~pappusCast~~ | Observer propagation | **DEPRECATED** — sporePrint + biomeOS |
+| ~~K-Derm diderm~~ | CF outer → Caddy inner | **DEPRECATED** — no proxy chain needed |
+| ~~Caddy~~ | TLS on VPS | **DEPRECATED** — dromedary |
+| ~~Stalwart~~ | Mail server | **EJECTED** — Nest Atomic messaging |
+| ~~WireGuard~~ | Mesh overlay | **DISABLED** — LAN is just LAN |
 
 ### Access Model
 
-Three-tier model. Observer is the default, open landing page.
-Reviewer and user tiers are gated by BTSP dual-auth (PAM + ionic token).
+Three paths to reach the organism. All serve the same content. No login required for public surfaces.
 
-| Tier | Access | Capabilities | Surface |
-|------|--------|-------------|---------|
-| **Observer** | Open — no login | Read-only rendered notebooks, data, dashboards | Static HTML at `lab.primals.eco` |
-| **Reviewer** | BTSP + PAM | Read + run notebooks (showcase) | JupyterHub (showcase-only view) |
-| **User** | BTSP + PAM | Read + write + run, shared workspace | JupyterHub (full workspace) |
+| Path | URL | Transport | Who |
+|------|-----|-----------|-----|
+| **WAN** | `https://primals.eco` | dromedary TLS (ACME) | Anyone on the internet |
+| **LAN** | `http://192.168.4.194:8080` | gaia-web HTTP | Any device on subnet |
+| **Tor** | `http://iqwvbmlg...riid.onion` | Tor hidden service | Anonymous visitors |
 
-### Auto-Propagation (pappusCast) — DEPRECATED
+### Gate Topology (Two Houses, One Organism)
 
-`pappusCast` is vestigial. The static observer surface is now served by
-sporePrint and the observer pipeline is absorbed by biomeOS composition.
-See `deploy/pappuscast/DEPRECATED.md` for migration path.
-
-### Gate Portability (Cell Membrane)
-
-Infrastructure follows a cell membrane model. See `specs/GATE_PORTABILITY.md`.
-
-- **Extracellular**: `primals.eco` via K-Derm diderm — Cloudflare (outer/trans) → Caddy (inner/cis) → NUCLEUS
-- **Membrane**: `lab/git.primals.eco` via Cloudflare proxy → Caddy on golgiBody VPS
-- **External Membrane**: cellMembrane fieldMouse on DigitalOcean VPS — Channel 2 (TURN relay) for NAT traversal across gate boundaries
-- **Intracellular**: sovereign compute, primals, data — total control inside the gate
-- **Gate-portable**: `deploy/gate_switch.sh <target>` migrates compute; replicas stay in membrane pool
-- **Provisioning**: `nucleus-deploy provision --target <host>` provisions sovereign gates via SSH
-- **Membrane watchdog**: `deploy/gate_watchdog.sh` logs membrane health for skunkBat audit
+| Gate | IP | State | Role | Hardware |
+|------|-----|-------|------|----------|
+| **eastGate** | .194/.103 | **OPEN** | brain+gut — full NUCLEUS, 17 primals | i9-14900K, 96GB DDR5, RTX 4070, 2TB NVMe |
+| **graftGate** | .107 | **OPEN** | Mac Mini | Apple Silicon |
+| **southGate** | .148 | **OPEN** | compute | — |
+| **ironGate** | .237 | **OPEN** | compute | — |
+| **blueGate** | .210 | **RISEN** | Windows SSH | — |
+| **northGate** | — | **SEARCHING** | House 1/MikroTik side | Polaris |
+| **sporeGate** | — | **DORMANT** | traveling node (was CI+mesh) | — |
+| ~~golgi~~ | 157.230.3.183 | **DOWN** | was Nest Atomic VPS | DigitalOcean 2GB — destroy |
+| ~~golgiLayerLinode~~ | 172.232.85.202 | **DEPRECATED** | was backup | Linode — destroy |
 
 ### Security
 
+- **All primal ports bound `127.0.0.1`** — 17 primals, no external exposure except dromedary
+- **MethodGate ENFORCED**: 17/17 primals ship MethodGate. Unauthenticated calls → `-32001 PERMISSION_DENIED`
+- **Ionic tokens LIVE**: BearDog Ed25519-signed scoped tokens with expiry and JTI
+- **dromedary Blackwall**: Meta/Facebook IP ranges blocked at the proxy level
+- **Identity architecture**: Kevin Mok/Tamison NEVER published from public surfaces. ecoPrimal is the handle. INVIOLABLE
+- **darkforest v3.0**: modular Rust security validator — 14 source modules, 149 tests, zero C deps
+- **tunnelKeeper v0.2.0**: Rust tunnel health — now TRANSITIONAL (dromedary replaced tunnel need)
 - **UFW active**: deny-by-default, allow SSH/LAN/localhost
-- **hidepid=2**: process isolation — ABG users cannot see primal PIDs or other users' processes
-- **Outbound network blocked**: iptables/ip6tables owner match DROPs all internet for ABG UIDs (localhost + LAN preserved)
-- **Observer surface hardened**: source stripped, internal directories blocked, page titles on all notebooks, admin templates disabled, root redirects to Welcome.ipynb
-- **Reviewer/user lockdown**: NoKernelManager blocks kernel creation for reviewers, no terminals, filesystem read-only (chmod 550 root-owned)
-- **Shared notebooks immutable**: compute users can run but not save back (chmod 444, per-user results dirs)
-- JupyterHub security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Server suppressed)
-- **MethodGate (JH-0) ENFORCED**: 13/13 primals ship MethodGate. All confirmed enforced via TCP. Unauthenticated calls return `-32001 PERMISSION_DENIED`
-- **Ionic tokens (JH-1) LIVE**: BearDog Ed25519-signed scoped tokens with expiry and JTI
-- **Resource envelopes (JH-2)**: biomeOS v4.56 + ToadStool S232 enforce limits on all dispatch paths
-- **Composition reload (JH-3)**: biomeOS `composition.reload` — hot-swap single primal without full restart
-- **Session UX (JH-4)**: `auth.issue_session` — purpose-based presets
-- **Audit log (JH-5)**: skunkBat ring buffer, 7 event kinds, cursor-based polling
-- **All primal ports bound `127.0.0.1`** — 13 primals + auxiliary ports (Phase 60 PG-55 default)
-- **darkforest v3.0**: modular Rust security validator — 14 source modules (8 inner + 6 outer). Inner: check, net, pentest, fuzz, crypto, observer, report, main. Outer: tls, http, depot, forge, dns, mesh. `--scope inner|outer|full`, `--suite observer` for static surface validation (86 PASS). **149 unit tests**. `rustls` + `webpki-roots` (ring backend) for HTTPS probes. Env-var-driven config, JSON report output. Zero C deps
-- **tunnelKeeper v0.2.0**: Rust crate for tunnel health/management (`validation/tunnelKeeper/`). Dual-transport: `CloudflareTunnelTransport` (v0.1) + `SongbirdTransport` (v0.2 sovereign TCP probe). Error-propagating API client, gate-agnostic credential paths. Async-correct: blocking health checks on `spawn_blocking`, `tokio::fs` for credential reads. Pure Rust TLS (ring backend, aws-lc-sys eliminated). **48 unit tests (+1 ignored)**, `unsafe_code = "forbid"`. 6.5 MB release binary
-- **Multi-tier test suite**: observer + reviewer + compute + hub + pappusCast health (`deploy/tier_test_all.sh`)
+- **Tor**: .onion hidden service provides censorship-resistant access
 - **DNS exfil closed**, **supply chain locked**, **crontab restricted**, **version disclosure suppressed**
 
-### Sovereignty Evolution
+### Sovereignty — ACHIEVED
 
-- **K-Derm diderm architecture**: outer (GitHub extracellular ledger) / inner (VPS golgiBody) / intracellular (gate source of truth)
-- **VPS as touchpoint, gate as source**: VPS terminates TLS, relays traffic, caches content. Gate hardware runs full NUCLEUS
-- **Forgejo PRIMARY**: 39 repos across 3 orgs. K-Derm diderm relay (push forgejo only → relay → GitHub via golgiBody-ext). No dual-push
-- **Content-aware routing**: `routing_config.toml` — static→VPS cache, auth/API/git→gate, large→Songbird P2P
-- **Trust model**: covalent/ionic/metallic/weak bonding maps to content access scopes in routing
-- **VPS Nest Atomic LIVE**: Tower + Nest (7 primals) + Caddy TLS on golgiBody. K-Derm inner membrane: Cloudflare (outer/trans) → Caddy (cis) → primals. Hardened: fail2ban, UFW, rate-limiting, ACME, DNSSEC
-- **DO credentials encrypted**: BearDog AES-256-GCM with Argon2id on VPS
-- **40+ dependencies mapped** across 7 clusters (`specs/COMPLETE_DEPENDENCY_INVENTORY.md`)
-- **benchScale framework** operational — 5 scenarios, 3 pentest scripts
-- **Content-aware routing**: `routing_config.toml` — static→VPS, auth/API/git→gate, large→Songbird P2P
-- **6 upstream gap handbacks** delivered: petalTongue, NestGate, RootPulse, JupyterHub, primal deep debt
+The organism IS sovereign. No external dependencies remain:
 
-### sporePrint (Extracellular)
+- **TLS**: dromedary ACME (was Cloudflare → Caddy chain)
+- **DNS**: Porkbun registrar, direct NS (was Cloudflare NS)
+- **Compute**: eastGate local (was golgi VPS + gate)
+- **Proxy**: dromedary (was Cloudflare CDN + Caddy reverse proxy)
+- **Git**: Forgejo primary, GitHub mirror (was K-Derm diderm relay through golgi)
+- **Search**: IndexNow direct submission (was Google Search Console)
+- **Federation**: Nostr + ActivityPub + RSS (was ProtonMail bridge)
+- **AI**: ollama local (was external API only)
+- **Tunnel**: dromedary direct (was Cloudflare Tunnel → tunnelKeeper)
 
-- `primals.eco` via K-Derm diderm: Cloudflare proxy (DDoS/CDN) → Caddy TLS on golgiBody (HSTS/CSP/ACME)
-- 15+ notebooks across commons/, showcase/, data/, pilot/, validation/
-- Auto-refresh CI across 26 repos; `sporeprint/` directories in all 8 springs
-- Local preview via `deploy/sporeprint_local.sh` (dev tool, not production path)
+### Public Surfaces (7 subdomains via dromedary)
+
+| Surface | URL | Pages | Content |
+|---------|-----|-------|---------|
+| **HUD** | `primals.eco` | 167 | Organism dashboard, REEDit, data feeds |
+| **sporePrint** | `sporeprint.primals.eco` | 382 | 836 research papers, science notebooks |
+| **Detroit** | `detroit.primals.eco` | 600+ | Municipal investigation, FOIA, data |
+| **Hypothesis** | `hypothesis.primals.eco` | 52 | Formal hypotheses, falsification |
+| **Tuebor** | `tuebor.primals.eco` | 35 | State-level analysis |
+| **Signal** | `signal.primals.eco` | — | Signal processing |
+| **NestGate API** | `nestgate.io` | — | Content gateway |
 
 ## Quick Start
 
@@ -237,30 +248,34 @@ See [deploy/](deploy/) for full deployment instructions.
 
 ## Phase Roadmap
 
-### Phase 1: Covalent LAN HPC (validated)
+### Phase 1: Covalent LAN HPC ✅ VALIDATED
 
-13 primals on the active gate (Full NUCLEUS) with provenance pipeline.
+17 primals on the active gate (Full NUCLEUS) with provenance pipeline.
 235+ wetSpring science checks passing. Full provenance chain operational.
-This proves the substrate works on our hardware.
+21 sweetGrass braids. This proves the substrate works on our hardware.
 
-### Phase 2: Ionic Compute Sharing (integration ready)
+### Phase 2: Ionic Compute Sharing ✅ OPERATIONAL
 
-3-gate LAN mesh LIVE (eastGate ↔ sporeGate ↔ ironGate). 7 gates enrolled.
-Cell membrane architecture live: K-Derm diderm (Cloudflare outer → Caddy inner),
-`lab/git.primals.eco` via Cloudflare proxy, compute inside (intracellular).
-pappusCast auto-propagation, multi-tier test suite.
+7 gates enrolled (5 OPEN, 1 RISEN, 1 DORMANT). LAN topology stable.
+Two-house architecture with 10G fiber backbone. dromedary serves direct.
 
-### Phase 3: Self-Hosted sporePrint
+### Phase 3: Self-Hosted sporePrint ✅ COMPLETE (Wave 200)
 
-petalTongue replaces Zola for primals.eco hosting. BTSP Phase 3 encrypted
-transport replaces Tailscale/Cloudflare. songBird NAT traversal replaces
-WireGuard tunnels.
+dromedary (Pure Rust) serves 7 subdomains with ACME TLS. 1,200+ pages live.
+Cloudflare FULLY DEPRECATED. Caddy DEPRECATED. No VPS needed. No proxy chain.
+songBird transport available. WireGuard DISABLED (not needed — LAN direct).
+Tor hidden service on eastGate. RSS self-publication. Nostr federation.
+IndexNow search submission. REEDit unified surface.
 
-### Phase 4: Full NUCLEUS Desktop Substrate
+**This phase is the sovereignty achievement.** The organism serves itself.
 
-biomeOS as orchestrator across all gates. Metallic bonding for institutional
-HPC. All gardens products running on projectNUCLEUS. sunCloud metabolic
-economics. Zero external dependencies.
+### Phase 4: Full NUCLEUS Desktop Substrate (ACTIVE)
+
+biomeOS orchestrates across all gates. Messaging through Nest Atomic (not Stalwart).
+songBird SMTP listener for inbound email → nestGate CAS → sweetGrass braids.
+Metallic bonding for institutional HPC. All gardens products on NUCLEUS.
+sunCloud metabolic economics. House 2 extension via TP-Link JetStream.
+northGate discovery. sporeGate re-enrollment when traveling node returns.
 
 See [PHASES.md](PHASES.md) for detailed phase architecture.
 
@@ -272,7 +287,7 @@ Root workspace `Cargo.toml` unifies 4 Rust crates (edition 2024, `unsafe_code = 
 Cargo.toml          Root workspace — darkforest, tunnelKeeper, nucleus-deploy, nucleus-primals
 specs/              NUCLEUS operational specs (15 active, 5 pending wateringHole migration — see specs/AUDIT.md)
 gates/              Gate inventory and hardware configs
-genomeBin/          Binary packaging manifest + harvest script (14 primals)
+genomeBin/          Binary packaging manifest + harvest script (17 primals)
 graphs/             19 deploy graph TOMLs — curated from primalSpring + gate-specific + application compositions
 deploy/             Deployment tooling (CORE)
   nucleus-deploy/   Rust binary: 9 subcommands (security, provenance, deploy, spore, telemetry, summary, verify, provision, dns)
@@ -298,25 +313,18 @@ whitePaper/         PENDING HANDOFF to primalSpring — see whitePaper/HANDOFF.m
 notebooks/          PENDING HANDOFF to primalSpring — see notebooks/HANDOFF.md
 ```
 
-## Handoff Status (Wave 157a)
+## Handoff Status (Wave 200+)
 
-projectNUCLEUS grew during the atomics evolution phase (gen3→gen4, ~May 2026)
-and accumulated responsibilities that now belong elsewhere:
-
-| Component | Status | Target Owner | Tracking |
-|-----------|--------|--------------|----------|
-| `workloads/` (43 TOMLs) | PENDING HANDOFF | Spring repos / primalSpring | `workloads/HANDOFF.md` |
-| `docs/BONDING_MODELS.md` | PENDING HANDOFF | wateringHole foundations | `docs/HANDOFF.md` |
-| `docs/FAMILY_HPC_MODEL.md` | PENDING HANDOFF | wateringHole foundations | `docs/HANDOFF.md` |
-| `whitePaper/baseCamp/` | PENDING HANDOFF | primalSpring docs | `whitePaper/HANDOFF.md` |
-| `notebooks/` template | PENDING HANDOFF | primalSpring notebooks | `notebooks/HANDOFF.md` |
-| `deploy/pappuscast/` | DEPRECATED | sporePrint / biomeOS | `deploy/pappuscast/DEPRECATED.md` |
-| `deploy/observer_server.py` | DEPRECATED | sporePrint | `deploy/pappuscast/DEPRECATED.md` |
-| `deploy/legacy/` (16 scripts) | FOSSILIZED | fossilRecord | `deploy/legacy/FOSSILIZED.md` |
-| 5 normative specs | PENDING MIGRATION | wateringHole specs | `specs/AUDIT.md` |
-| 2 snapshot specs | FOSSILIZE | validation/archive | `specs/AUDIT.md` |
-| `nucleus-primals` registry | TRANSITIONAL | Converge with primalSpring | In-place evolution |
-| `tunnelKeeper` | TRANSITIONAL | Archive after H2-16 cutover | `specs/TUNNEL_EVOLUTION.md` |
+| Component | Status | Notes |
+|-----------|--------|-------|
+| `workloads/` (43 TOMLs) | PENDING HANDOFF | Spring repos / primalSpring |
+| `docs/BONDING_MODELS.md` | PENDING HANDOFF | wateringHole foundations |
+| `whitePaper/baseCamp/` | PENDING HANDOFF | primalSpring docs |
+| `deploy/pappuscast/` | **DEPRECATED** | Absorbed by sporePrint + biomeOS |
+| `deploy/legacy/` (16 scripts) | **FOSSILIZED** | Bash → Rust evolution complete |
+| `nucleus-primals` registry | **EVOLVING** | 13→17 primals, add dromedary/sourDough/bingoCube/swarmVine |
+| `tunnelKeeper` | **TRANSITIONAL** | dromedary replaced tunnels; archive after cleanup |
+| `cellMembrane` ops repo | **DEPRECATED** | golgi DOWN, eastGate runs everything |
 
 ## Core Components (refined scope)
 
@@ -324,8 +332,8 @@ and accumulated responsibilities that now belong elsewhere:
 |-----------|------|--------|
 | **nucleus-deploy** | Gate ops CLI: deploy, security, provenance, telemetry, DNS, provision, verify, spore | **CORE** |
 | **darkforest** | Adversarial security validator (inner + outer membrane, 149 tests) | **CORE** |
-| **tunnelKeeper** | CF tunnel management + Songbird shadow metrics | **TRANSITIONAL** |
-| **nucleus-primals** | Compiled slug/port/framing registry | **TRANSITIONAL** |
+| **tunnelKeeper** | Tunnel health — TRANSITIONAL (dromedary replaced need) | **ARCHIVE PENDING** |
+| **nucleus-primals** | Compiled slug/port/framing registry (17 primals) | **EVOLVING** |
 | **gates/*.toml** | Gate hardware + composition manifests | **CORE** |
 | **graphs/** | Deploy graph TOMLs (curated from primalSpring) | **CORE** |
 | **specs/** (15 operational) | NUCLEUS validation results, baselines, evolution tracking | **CORE** |
@@ -339,9 +347,9 @@ and accumulated responsibilities that now belong elsewhere:
 |------|-----|-------------|
 | **primalSpring** | syntheticChemistry | Upstream — composition patterns, scenarios, workload standards |
 | **plasmidBin** | ecoPrimals/infra | Binary depot — genomeBins fetched by nucleus-deploy |
-| **wateringHole** | ecoPrimals/infra | Standards — 5 normative specs pending migration upstream |
-| **cellMembrane** | gardens | Fleet ops — validated gates handed off for cascade pipeline |
-| **sporePrint** | ecoPrimals/infra | Website — absorbing observer surface from deprecated pappusCast |
+| **wateringHole** | ecoPrimals/infra | Standards — normative specs |
+| **sporePrint** | ecoPrimals/infra | Website — 382 pages, 836 papers, sovereign via dromedary |
 | **projectFOUNDATION** | gardens | Knowledge foundation — validated lineage, domain threads |
 | **helixVision** | gardens | Genomics product — runs on NUCLEUS substrate |
 | **esotericWebb** | gardens | Creative product — runs on NUCLEUS substrate |
+| ~~cellMembrane~~ | ~~gardens~~ | **DEPRECATED** — golgi VPS DOWN, eastGate runs everything |

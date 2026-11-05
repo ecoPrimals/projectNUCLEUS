@@ -1,0 +1,102 @@
+# Gate: eastGate — Brain + Gut of the Organism
+#
+# i9-14900K (24 cores), 96 GB DDR5, RTX 4070 (12 GB GDDR6X).
+# Full NUCLEUS: 17/17 primals, dromedary sovereign TLS, Tor hidden service,
+# 15 ollama models + 3 custom (gaia, gaia-code, gaia-fast).
+# 23 mushrooms, 35 crons — autonomous self-maintaining organism.
+# Created 2026-05-01. Updated 2026-11-04 (Wave 200+).
+
+[gate]
+name = "eastgate"
+role = "brain+gut — full NUCLEUS, sovereign proxy, AI inference, autonomous organism"
+location = "House 1 — LAN primary"
+bonding = "covalent"
+secure_by_default = true
+status = "open"
+
+[hardware]
+cpu = "Intel i9-14900K"
+cores = 24
+threads = 32
+gpu = "NVIDIA RTX 4070"
+gpu_vram_gb = 12
+gpu_type = "GDDR6X"
+ram_gb = 96
+ram_type = "DDR5"
+storage_tb = 2.0
+storage_type = "NVMe"
+os = "Pop!_OS 22.04 LTS"
+
+[network]
+lan_ip = "192.168.4.194"
+lan_ip_alt = "192.168.4.103"
+lan_speed = "1G"
+wan_ip = "162.226.225.148"
+wan_ports_forwarded = [80, 443, 25, 53]
+interface = "Cat6e ethernet"
+tor_onion = "iqwvbmlgvoiilj2hr43anj2keseao2lptquad36je5p5p2etw5e3riid.onion"
+wireguard = "disabled"
+
+[membrane]
+role = "sovereign — no VPS, no proxy chain, dromedary serves direct"
+model = "dromedary TLS → primals (localhost) → gaia-web (8080)"
+
+[composition]
+atomic = "full_nucleus"
+primals = [
+    "beardog", "songbird", "skunkbat", "dromedary",
+    "toadstool", "barracuda", "coralreef",
+    "nestgate", "rhizocrypt", "loamspine", "sweetgrass",
+    "sourdough", "swarmvine", "bingocube",
+    "squirrel", "biomeos", "petaltongue",
+]
+fragment = "full_nucleus + ferment_atomic + sovereign_infra"
+
+[services]
+dromedary = { port = 443, bind = "0.0.0.0", role = "sovereign TLS reverse proxy" }
+dromedary_http = { port = 80, bind = "0.0.0.0", role = "HTTP redirect to HTTPS" }
+gaia_web = { port = 8080, bind = "0.0.0.0", role = "data server — HUD, membrane, API" }
+forgejo = { port = 3000, bind = "127.0.0.1", role = "git host — 40+ repos" }
+forgejo_ssh = { port = 2222, bind = "0.0.0.0", role = "git SSH" }
+ollama = { port = 11434, bind = "127.0.0.1", role = "AI inference — 15 models + 3 custom" }
+tor = { role = "hidden service — .onion" }
+
+[ai]
+models = [
+    "tinyllama", "gemma2:2b", "llama3.2:1b",
+    "phi3", "qwen2.5:7b", "llama3.2:3b",
+    "deepseek-coder-v2:16b", "mistral:7b",
+]
+custom_models = ["gaia", "gaia-code", "gaia-fast"]
+inference_port = 11434
+
+[identity]
+family_name = "eastgate-sovereign"
+node_id = "eastgate"
+family_seed_path = "~/.family.seed"
+nostr_gaia = "npub1zef93r77duvek84rhjs83merzzvg3vs78272f5skxn2t75k8czhqsxnksf"
+nostr_ecoprimal = "npub1x8ry8j25nhqvw3kgw2ze7mvxew3r6emaa823lqzz90fy3c2008wqrmp805"
+
+[autonomous]
+mushrooms = 23
+crons = 35
+feeds = { rss_items = 1560, braids = 21 }
+
+[surfaces]
+subdomains = [
+    "primals.eco",
+    "sporeprint.primals.eco",
+    "detroit.primals.eco",
+    "hypothesis.primals.eco",
+    "tuebor.primals.eco",
+    "signal.primals.eco",
+    "nestgate.io",
+]
+total_pages = 1200
+
+[dns]
+registrar = "Porkbun"
+mx = "mail.primals.eco"
+spf = true
+dmarc = true
+indexnow_key = "a6fd81e296ce4a66adebaa2b9d36668c"

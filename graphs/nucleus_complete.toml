@@ -4,12 +4,13 @@
 #
 # Full NUCLEUS Complete — Zero-Port Tower Atomic Standard
 #
-# 13 primal binaries (14 endpoints — rhizoCrypt serves :9601 + :9602).
+# 17 primal binaries (18 endpoints — rhizoCrypt serves :9601 + :9602).
 # Canonical registry: deploy/nucleus-primals/src/lib.rs
 # Domain: BearDog, Songbird, ToadStool, BarraCuda, CoralReef, NestGate,
 #         Squirrel, rhizoCrypt, loamSpine, sweetGrass, skunkBat.
+# Ferment: sourDough (fermentation), swarmVine (gossip), bingoCube (coordination).
+# Infra:  dromedary (sovereign reverse proxy, TLS, ACME).
 # Meta:   biomeOS (orchestrator), petalTongue (UI), primalSpring (coordination).
-# Future: sourDough (scaffolding — starter culture for new primals, no binary yet).
 #
 # Zero TCP ports bound by default. All IPC over Unix domain sockets.
 # TCP fallback ports declared per node for Tier 5 discovery.
@@ -253,13 +254,81 @@ capabilities = [
 ]
 
 # ═══════════════════════════════════════════════════════════════
+# Phase 3c: Ferment Atomic (gluon) — coordination + gossip + fermentation
+# ═══════════════════════════════════════════════════════════════
+
+[[graph.nodes]]
+name = "sourdough"
+binary = "sourdough"
+order = 12
+required = false
+depends_on = ["beardog", "nestgate"]
+health_method = "health.liveness"
+by_capability = "fermentation"
+security_model = "btsp"
+tcp_fallback_port = 9350
+capabilities = [
+    "ferment.masticate", "ferment.culture",
+    "ferment.feed", "ferment.publish",
+]
+
+[[graph.nodes]]
+name = "swarmvine"
+binary = "swarmvine"
+order = 13
+required = false
+depends_on = ["beardog", "songbird"]
+health_method = "health.liveness"
+by_capability = "gossip"
+security_model = "btsp"
+tcp_fallback_port = 7800
+capabilities = [
+    "gossip.broadcast", "gossip.subscribe",
+    "gossip.epidemic.spread", "gossip.peers",
+]
+
+[[graph.nodes]]
+name = "bingocube"
+binary = "bingocube"
+order = 14
+required = false
+depends_on = ["beardog", "songbird", "toadstool"]
+health_method = "health.liveness"
+by_capability = "coordination"
+security_model = "btsp"
+tcp_fallback_port = 9360
+capabilities = [
+    "coordinate.schedule", "coordinate.sync",
+    "coordinate.consensus", "coordinate.elect",
+]
+
+# ═══════════════════════════════════════════════════════════════
+# Phase 3d: Sovereign Infrastructure — dromedary reverse proxy
+# ═══════════════════════════════════════════════════════════════
+
+[[graph.nodes]]
+name = "dromedary"
+binary = "dromedary"
+order = 15
+required = false
+depends_on = ["beardog"]
+health_method = "health.liveness"
+by_capability = "proxy"
+security_model = "sovereign"
+tcp_fallback_port = 443
+capabilities = [
+    "proxy.tls.terminate", "proxy.route",
+    "proxy.acme.provision", "proxy.blackwall",
+]
+
+# ═══════════════════════════════════════════════════════════════
 # Phase 4: Interface — BTSP authenticated via BearDog relay
 # ═══════════════════════════════════════════════════════════════
 
 [[graph.nodes]]
 name = "petaltongue"
 binary = "petaltongue"
-order = 12
+order = 16
 required = false
 depends_on = ["biomeos_neural_api"]
 health_method = "health.liveness"
@@ -282,7 +351,7 @@ capabilities = [
 [[graph.nodes]]
 name = "primalspring"
 binary = "primalspring_primal"
-order = 13
+order = 17
 required = true
 spawn = false
 depends_on = ["biomeos_neural_api", "beardog", "songbird", "nestgate", "toadstool", "squirrel"]

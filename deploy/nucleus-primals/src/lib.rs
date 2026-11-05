@@ -162,6 +162,41 @@ pub const PRIMALS: &[PrimalDef] = &[
         transports: &[Transport::Uds, Transport::Tcp],
         btsp_required: true,
     },
+    // ── Ferment Atomic (gluon): coordination + gossip + fermentation ──
+    PrimalDef {
+        slug: "sourdough",
+        env_key: "SOURDOUGH_PORT",
+        default_port: 9350,
+        framing: Framing::Newline,
+        transports: &[Transport::Uds],
+        btsp_required: true,
+    },
+    PrimalDef {
+        slug: "swarmvine",
+        env_key: "SWARMVINE_PORT",
+        default_port: 7800,
+        framing: Framing::Newline,
+        transports: &[Transport::Uds, Transport::Tcp],
+        btsp_required: true,
+    },
+    PrimalDef {
+        slug: "bingocube",
+        env_key: "BINGOCUBE_PORT",
+        default_port: 9360,
+        framing: Framing::Newline,
+        transports: &[Transport::Uds],
+        btsp_required: true,
+    },
+    // ── Sovereign infrastructure ──
+    PrimalDef {
+        slug: "dromedary",
+        env_key: "DROMEDARY_PORT",
+        default_port: 443,
+        framing: Framing::Http,
+        transports: &[Transport::Http],
+        btsp_required: false,
+    },
+    // ── Validation (not deployable) ──
     PrimalDef {
         slug: "primalspring",
         env_key: "PRIMALSPRING_PORT",
@@ -226,8 +261,8 @@ pub fn uses_http_framing(slug: &str) -> bool {
 
 // ── Composition constants (atomic groupings) ──────────────────────
 
-/// Tower Atomic (electron): security + discovery + defense.
-pub const COMP_TOWER: &[&str] = &["beardog", "songbird", "skunkbat"];
+/// Tower Atomic (electron): security + discovery + defense + sovereign TLS.
+pub const COMP_TOWER: &[&str] = &["beardog", "songbird", "skunkbat", "dromedary"];
 
 /// Node Atomic (proton): tower + compute trio + defense.
 pub const COMP_NODE: &[&str] = &[
@@ -250,10 +285,13 @@ pub const COMP_NEST: &[&str] = &[
     "skunkbat",
 ];
 
+/// Ferment Atomic (gluon): coordination + gossip + fermentation.
+pub const COMP_FERMENT: &[&str] = &["sourdough", "swarmvine", "bingocube"];
+
 /// Agent composition: tower + defense + orchestration + agent.
 pub const COMP_AGENT: &[&str] = &["beardog", "songbird", "skunkbat", "biomeos", "squirrel"];
 
-/// Full NUCLEUS: all 13 deployable primals (excludes rhizocrypt-rpc alias
+/// Full NUCLEUS: all 17 deployable primals (excludes rhizocrypt-rpc alias
 /// and primalspring which is a validation spring, not a deployable primal).
 pub const COMP_FULL: &[&str] = &[
     "beardog",
@@ -269,6 +307,10 @@ pub const COMP_FULL: &[&str] = &[
     "skunkbat",
     "biomeos",
     "petaltongue",
+    "sourdough",
+    "swarmvine",
+    "bingocube",
+    "dromedary",
 ];
 
 // ── Infrastructure service defaults ──────────────────────────────
@@ -303,8 +345,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn registry_has_15_entries() {
-        assert_eq!(PRIMALS.len(), 15);
+    fn registry_has_19_entries() {
+        assert_eq!(PRIMALS.len(), 19);
     }
 
     #[test]
@@ -377,17 +419,17 @@ mod tests {
     }
 
     #[test]
-    fn all_non_beardog_require_btsp() {
+    fn all_non_origin_require_btsp() {
         for def in PRIMALS {
-            if def.slug != "beardog" {
+            if def.slug != "beardog" && def.slug != "dromedary" {
                 assert!(def.btsp_required, "{} should require BTSP", def.slug);
             }
         }
     }
 
     #[test]
-    fn deployable_slugs_has_13() {
-        assert_eq!(deployable_slugs().len(), 13);
+    fn deployable_slugs_has_17() {
+        assert_eq!(deployable_slugs().len(), 17);
     }
 
     #[test]
@@ -412,17 +454,24 @@ mod tests {
     }
 
     #[test]
-    fn comp_full_has_13_primals() {
+    fn comp_full_has_17_primals() {
         assert_eq!(
             COMP_FULL.len(),
-            13,
-            "COMP_FULL should list all 13 deployable primals"
+            17,
+            "COMP_FULL should list all 17 deployable primals"
         );
     }
 
     #[test]
+    fn comp_ferment_is_subset_of_full() {
+        for slug in COMP_FERMENT {
+            assert!(COMP_FULL.contains(slug), "{slug} not in COMP_FULL");
+        }
+    }
+
+    #[test]
     fn all_comp_slugs_exist_in_registry() {
-        for comp in [COMP_TOWER, COMP_NODE, COMP_NEST, COMP_AGENT, COMP_FULL] {
+        for comp in [COMP_TOWER, COMP_NODE, COMP_NEST, COMP_FERMENT, COMP_AGENT, COMP_FULL] {
             for slug in comp {
                 assert!(
                     lookup(slug).is_some(),
